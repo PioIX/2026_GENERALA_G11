@@ -7,7 +7,7 @@ function postDatosUsuarios() {
         contraseña: getContraseña()
     }
 
-    llmadoPostUsuarios(datos)
+    llamadoPostUsuarios(datos)
 }
 
 function postDatosEstadisticas() {
@@ -49,7 +49,31 @@ function putDatosEstadisticas() {
 
 // LLAMADOS
 
-// HACER llamados al GET
+async function llamadoGetUsuarios() {
+    const response = await fetch('http://localhost:4000/getUsuarios',{
+        method:"GET",
+        headers: {
+            "Content-Type": "application/json",
+          },
+    })
+
+    console.log(response)
+    let result = await response.json()
+    console.log(result)
+}
+
+async function llamadoGetEstadisticas() {
+    const response = await fetch('http://localhost:4000/getEstadisticas',{
+        method:"GET",
+        headers: {
+            "Content-Type": "application/json",
+          },
+    })
+    
+    console.log(response)
+    let result = await response.json()
+    console.log(result)
+}
 
 async function llamadoPostUsuarios(datos) {
     const response = await fetch('http://localhost:4000/postUsuarios', {
