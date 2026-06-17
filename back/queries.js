@@ -20,6 +20,14 @@ app.listen(port, function () {
 // GET
 app.get("/getUsuario", async function (req, res) {
   console.log(req.query);
+  if (req.query && req.query.mail) {
+    const respuesta = await realizarQuery(`
+        SELECT * FROM Usuarios WHERE mail = '${req.query.mail}';
+    `);
+    console.log({ respuesta });
+    res.send(respuesta);
+  }
+
   const respuesta = await realizarQuery(`
         SELECT * FROM Usuarios;
     `);
@@ -36,15 +44,15 @@ app.get("/getEstadisticas", async function (req, res) {
   res.send(respuesta);
 });
 
-// POST - MODIFICAR despuesxd
+// POST
 app.post("/postUsuarios", async function (req, res) {
   console.log(req.body);
   let respuesta = await realizarQuery(
-    `SELECT * FROM Usuarios WHERE nombre = '${req.body.nombre}' AND apellido = '${req.body.apellido}' AND nombre_de_usuario = '${req.body.nombre_de_usuario}' AND contraseña = '${req.body.contraseña}'`
+    `SELECT '' FROM Usuarios WHERE mail = '${req.body.mail}'`
   );
   if (respuesta.length == 0) {
     await realizarQuery(
-      `INSERT INTO Usuarios(nombre, apellido, nombre_de_usuario, contraseña) VALUES ('${req.body.nombre}', '${req.body.apellido}', '${req.body.nombre_de_usuario}', '${req.body.contraseña}')`
+      `INSERT INTO Usuarios(nombre, mail, contraseña) VALUES ('${req.body.nombre}', '${req.body.mail}', '${req.body.contraseña}')`
     );
   }
 });

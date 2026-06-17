@@ -1,11 +1,16 @@
-let cont_idUser=1;
 class User{
     constructor(name, mail, password){
         this.name = name;
         this.mail = mail;
         this.password = password;
-        this.id = cont_idUser;
-        cont_idUser++;
+    }
+
+    save() {
+
+    }
+
+    load() {
+
     }
 
 }
