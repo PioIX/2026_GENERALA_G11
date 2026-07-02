@@ -40,7 +40,7 @@ class Funciones {
   changeScreenAdmin(){
     const admin = document.getElementById("Admin");
     const login = document.getElementById("MAIN-login");
-    if (admin.style.display == "none") {
+    if (admin.style.display === "none") {
       admin.style.display = "block";
       login.style.display = "none";
     }

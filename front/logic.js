@@ -12,8 +12,8 @@ async function login(email, contraseña) {
 }
 
 function handleLogin(){
-    const email = getEmail()
-    const contraseña = getContraseña()
+    const email = ui.getEmail()
+    const contraseña = ui.getContraseña()
 
     if (email === "" || contraseña === ""){
         /*showModal("Error", "Mail o contraseña vacios.")*/
@@ -34,8 +34,12 @@ function handleLogin(){
         return;
     }
     
-    /* aca se pasaria a la siguiente pag */
-    console.log("2")
+    if (email === "jpork@pioix.edu.ar"){
+        ui.changeScreenAdmin()
+    }else{
+        ui.changeScreenGame()
+    }
+    
 }
 
 
@@ -62,11 +66,11 @@ async function newUsuario(email, nombre, apellido, nombre_de_usuario, contraseñ
 }
 
 function handleRegister(){
-    let nombre = getNombre()
-    let apellido = getApellido()
-    let nombre_de_usuario =  getNombreUsuario()
-    let email = getEmail()
-    let contraseña = getContraseña()
+    let nombre = ui.getNombre()
+    let apellido = ui.getApellido()
+    let nombre_de_usuario =  ui.getNombreUsuario()
+    let email = ui.getEmail()
+    let contraseña = ui.getContraseña()
 
     if (nombre_de_usuario === "" || email === "" || contraseña === "" || nombre === "" || apellido === "" ){
         /*showModal("Error", "Por favor complete todos los datos")*/
